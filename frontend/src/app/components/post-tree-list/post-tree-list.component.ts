@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Post} from '../../models/post.model';
 import {GroupKey} from '../../services/posts/posts.service';
-import {MatRadioChange} from "@angular/material";
+import {MatRadioChange} from '@angular/material';
 
 export interface PostTreeItem {
   groupKey: string;
