@@ -1,0 +1,20 @@
+<mat-expansion-panel *ngFor="let treeItem of treeList">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{treeItem.groupTitle}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <div *ngFor="let post of treeItem.postList; last as last">
+    <div matLine>
+      <p>
+        {{'Author: ' + post.author + ' - Location: ' + post.location}}
+      </p>
+    </div>
+    <div matLine>
+      <p>{{post.text}}</p>
+    </div>
+    <mat-divider *ngIf="!last"></mat-divider>
+  </div>
+
+</mat-expansion-panel>
