@@ -3,6 +3,8 @@ import {CrudService} from '../crud/crud.service';
 import {Post} from '../../models/post.model';
 import {PostTreeItem} from '../../components/post-tree-list/post-tree-list.component';
 
+export type GroupKey = ('yearWeek' | 'author' | 'location') & keyof Post;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +20,7 @@ export class PostsService {
   public fetchList() {
     this.crudService.getList(this.url).subscribe(list => {
       this.postList = list.map(post => new Post(post));
-      this.setGroupedList(this.postList);
+      this.setGroupedList('yearWeek');
     });
   }
 
@@ -30,17 +32,22 @@ export class PostsService {
     return this.groupedPostList;
   }
 
-  private setGroupedList(postList: Post[]) {
-    this.groupedPostList = postList.reduce((postTreeList, post) => {
+  private setGroupedList(groupKey: GroupKey) {
+    this.groupedPostList = this.postList.reduce((postTreeList, post) => {
       const group: PostTreeItem = postTreeList.find((postTreeItem: PostTreeItem) => {
-        return postTreeItem.groupKey === post.yearWeek;
+        return postTreeItem.groupKey === post[groupKey];
       });
       if (group) {
         group.postList.push(post);
       } else {
+        const groupTitle = {
+          yearWeek: `Week ${post.week} (${post.year})`,
+          author: `Author: ${post.author}`,
+          location: `Location: ${post.location}`,
+        };
         const newGroup: PostTreeItem = {
-          groupKey: post.yearWeek,
-          groupTitle: `Week ${post.week} (${post.year})`,
+          groupKey: post[groupKey],
+          groupTitle: groupTitle[groupKey],
           postList: [post]
         };
         postTreeList.push(newGroup);
