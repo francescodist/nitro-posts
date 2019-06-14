@@ -1,5 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Post} from '../../models/post.model';
+import {GroupKey} from '../../services/posts/posts.service';
+import {MatRadioChange} from "@angular/material";
 
 export interface PostTreeItem {
   groupKey: string;
@@ -16,6 +18,14 @@ export class PostTreeListComponent implements OnInit {
 
   @Input() treeList: PostTreeItem[];
 
+  @Output() selectGroupKey = new EventEmitter<GroupKey>();
+
+  groupKeys: { title: string, key: GroupKey, checked?: boolean }[] = [
+    {key: 'yearWeek', title: 'Week', checked: true},
+    {key: 'author', title: 'Author'},
+    {key: 'location', title: 'Location'},
+  ];
+
   constructor() {
   }
 
@@ -26,4 +36,7 @@ export class PostTreeListComponent implements OnInit {
     return postTreeItem.groupTitle;
   }
 
+  public onSelectGroupKey(event: MatRadioChange) {
+    this.selectGroupKey.emit(event.value);
+  }
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostTreeListComponent } from './post-tree-list.component';
-import {MatExpansionModule, MatListModule} from '@angular/material';
+import {MatExpansionModule, MatListModule, MatRadioModule} from '@angular/material';
 
 @NgModule({
   declarations: [PostTreeListComponent],
@@ -11,7 +11,8 @@ import {MatExpansionModule, MatListModule} from '@angular/material';
   imports: [
     CommonModule,
     MatExpansionModule,
-    MatListModule
+    MatListModule,
+    MatRadioModule
   ]
 })
 export class PostTreeListModule { }
