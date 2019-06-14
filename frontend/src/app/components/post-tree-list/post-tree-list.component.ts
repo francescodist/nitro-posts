@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../../models/post.model';
 
 export interface PostTreeItem {
+  groupKey: string;
   groupTitle: string;
   postList: Post[];
 }
@@ -15,9 +16,14 @@ export class PostTreeListComponent implements OnInit {
 
   @Input() treeList: PostTreeItem[];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  public trackByGroupName(index: number, postTreeItem: PostTreeItem) {
+    return postTreeItem.groupTitle;
   }
 
 }

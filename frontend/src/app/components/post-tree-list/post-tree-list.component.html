@@ -1,4 +1,4 @@
-<mat-expansion-panel *ngFor="let treeItem of treeList">
+<mat-expansion-panel *ngFor="let treeItem of treeList; trackBy: trackByGroupName">
   <mat-expansion-panel-header>
     <mat-panel-title>
       {{treeItem.groupTitle}}
