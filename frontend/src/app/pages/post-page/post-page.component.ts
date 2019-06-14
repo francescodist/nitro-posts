@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {PostsService} from '../../services/posts/posts.service';
+import {PostTreeItem} from '../../components/post-tree-list/post-tree-list.component';
 
 @Component({
   selector: 'app-post-page',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private postService: PostsService) {
+  }
 
   ngOnInit() {
+    this.postService.fetchList();
+  }
+
+  public getGroupedPostsList(): PostTreeItem[] {
+    return this.postService.getGroupedList();
   }
 
 }
