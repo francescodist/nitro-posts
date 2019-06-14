@@ -1,1 +1,1 @@
-<app-post-tree-list [treeList]="getGroupedPostsList()"></app-post-tree-list>
+<app-post-tree-list [treeList]="getGroupedPostsList()" (selectGroupKey)="setGroupedPostsList($event)"></app-post-tree-list>

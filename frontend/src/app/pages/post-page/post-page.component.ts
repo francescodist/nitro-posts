@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {PostsService} from '../../services/posts/posts.service';
+import {GroupKey, PostsService} from '../../services/posts/posts.service';
 import {PostTreeItem} from '../../components/post-tree-list/post-tree-list.component';
 
 @Component({
@@ -18,6 +18,10 @@ export class PostPageComponent implements OnInit {
 
   public getGroupedPostsList(): PostTreeItem[] {
     return this.postService.getGroupedList();
+  }
+
+  public setGroupedPostsList(groupKey: GroupKey) {
+    this.postService.setGroupedList(groupKey);
   }
 
 }
