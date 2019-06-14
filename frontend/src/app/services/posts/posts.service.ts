@@ -32,7 +32,7 @@ export class PostsService {
     return this.groupedPostList;
   }
 
-  private setGroupedList(groupKey: GroupKey) {
+  public setGroupedList(groupKey: GroupKey) {
     this.groupedPostList = this.postList.reduce((postTreeList, post) => {
       const group: PostTreeItem = postTreeList.find((postTreeItem: PostTreeItem) => {
         return postTreeItem.groupKey === post[groupKey];
