@@ -5,7 +5,9 @@
     {{groupKey.title}}
   </mat-radio-button>
 </mat-radio-group>
-<mat-expansion-panel *ngFor="let treeItem of treeList; trackBy: trackByGroupName">
+
+<mat-expansion-panel *ngFor="let treeItem of treeList; trackBy: trackByGroupName"
+                     (afterCollapse)="editablePost = null">
   <mat-expansion-panel-header>
     <mat-panel-title>
       {{treeItem.groupTitle}}
@@ -13,15 +15,28 @@
   </mat-expansion-panel-header>
 
   <div *ngFor="let post of treeItem.postList; last as last">
-    <div matLine>
+    <div class="post-title" matLine>
       <p>
         {{'Author: ' + post.author + ' - Location: ' + post.location}}
       </p>
+      <button class="post-edit-button" mat-icon-button (click)="editPost(post)">
+        <mat-icon>{{post === editablePost ? 'close' : 'edit'}}</mat-icon>
+      </button>
     </div>
-    <div matLine>
+    <div matLine *ngIf="post !== editablePost">
       <p>{{post.text}}</p>
+    </div>
+    <div matLine *ngIf="post === editablePost">
+      <form >
+        <mat-form-field>
+          <input matInput placeholder="Author" [(ngModel)]="post.author" name="author">
+        </mat-form-field>
+
+        <mat-form-field >
+          <input matInput placeholder="Location" [(ngModel)]="post.location" name="location">
+        </mat-form-field>
+      </form>
     </div>
     <mat-divider *ngIf="!last"></mat-divider>
   </div>
-
 </mat-expansion-panel>

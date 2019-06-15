@@ -25,6 +25,7 @@ export class PostTreeListComponent implements OnInit {
     {key: 'author', title: 'Author'},
     {key: 'location', title: 'Location'},
   ];
+  editablePost: Post;
 
   constructor() {
   }
@@ -37,6 +38,11 @@ export class PostTreeListComponent implements OnInit {
   }
 
   public onSelectGroupKey(event: MatRadioChange) {
+    this.editablePost = null;
     this.selectGroupKey.emit(event.value);
+  }
+
+  public editPost(post: Post) {
+    this.editablePost = this.editablePost === post ? null : post;
   }
 }

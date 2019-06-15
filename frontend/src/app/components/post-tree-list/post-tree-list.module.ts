@@ -1,7 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostTreeListComponent } from './post-tree-list.component';
-import {MatExpansionModule, MatListModule, MatRadioModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatExpansionModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatRadioModule
+} from '@angular/material';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [PostTreeListComponent],
@@ -12,7 +20,11 @@ import {MatExpansionModule, MatListModule, MatRadioModule} from '@angular/materi
     CommonModule,
     MatExpansionModule,
     MatListModule,
-    MatRadioModule
+    MatRadioModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    FormsModule
   ]
 })
 export class PostTreeListModule { }
