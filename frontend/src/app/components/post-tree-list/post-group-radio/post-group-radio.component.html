@@ -3,9 +3,9 @@
     Group the Posts By:
   </mat-card-title>
   <mat-radio-group aria-label="Group the Posts By:"
-                   (change)="onSelectGroupKey($event)">
+                   (change)="onSelectGroupKey($event)" [value]="selectedKey" >
     <mat-radio-button *ngFor="let groupKey of groupKeys" [value]="groupKey.key"
-                      [checked]="groupKey.checked" class="radio-button">
+                      class="radio-button">
       {{groupKey.title}}
     </mat-radio-button>
   </mat-radio-group>
