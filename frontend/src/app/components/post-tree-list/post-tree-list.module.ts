@@ -9,10 +9,11 @@ import {
   MatListModule,
   MatRadioModule
 } from '@angular/material';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
+import { PostGroupRadioComponent } from './post-group-radio/post-group-radio.component';
 
 @NgModule({
-  declarations: [PostTreeListComponent],
+  declarations: [PostTreeListComponent, PostGroupRadioComponent],
   exports: [
     PostTreeListComponent
   ],
