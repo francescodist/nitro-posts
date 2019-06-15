@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostTreeListComponent } from './post-tree-list.component';
 import {
-  MatButtonModule,
+  MatButtonModule, MatCardModule,
   MatExpansionModule,
   MatIconModule,
   MatInputModule,
@@ -25,7 +25,8 @@ import { PostGroupRadioComponent } from './post-group-radio/post-group-radio.com
     MatIconModule,
     MatButtonModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatCardModule
   ]
 })
 export class PostTreeListModule { }
