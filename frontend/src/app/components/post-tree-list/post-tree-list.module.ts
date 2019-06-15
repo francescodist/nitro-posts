@@ -11,6 +11,7 @@ import {
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import { PostGroupRadioComponent } from './post-group-radio/post-group-radio.component';
+import {DirectivesModule} from "../../directives/directives.module";
 
 @NgModule({
   declarations: [PostTreeListComponent, PostGroupRadioComponent],
@@ -26,7 +27,8 @@ import { PostGroupRadioComponent } from './post-group-radio/post-group-radio.com
     MatButtonModule,
     MatInputModule,
     FormsModule,
-    MatCardModule
+    MatCardModule,
+    DirectivesModule
   ]
 })
 export class PostTreeListModule { }

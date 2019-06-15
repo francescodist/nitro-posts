@@ -2,45 +2,49 @@
   <app-post-group-radio (selectGroupKey)="onSelectGroupKey($event)"></app-post-group-radio>
 </div>
 
-<mat-expansion-panel *ngFor="let treeItem of treeList; trackBy: trackByGroupName"
-                     (afterCollapse)="editablePost = null">
-  <mat-expansion-panel-header>
-    <mat-panel-title class="group-title">
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let treeItem of treeList; trackBy: trackByGroupName; index as index"
+                       (afterCollapse)="editablePost = null"
+                       [appFadeInByPosition]="index">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="group-title">
         {{treeItem.groupTitle}}
-    </mat-panel-title>
-  </mat-expansion-panel-header>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
 
-  <div *ngFor="let post of treeItem.postList; last as last" class="post-item">
-    <div class="post-title" matLine>
-      <p>
+    <div *ngFor="let post of treeItem.postList; last as last; index as index" class="post-item" >
+      <div class="post-title" matLine>
+        <p>
         <span class="post-author">
           {{post.author}}
         </span> -
-        <span>
+          <span>
           {{post.time * 1000 | date:"dd/MM/yyyy hh:mm"}}
         </span> -
-        <span class="post-location">
+          <span class="post-location">
           {{post.location}}
         </span>
-      </p>
-      <button class="post-edit-button" mat-icon-button (click)="editPost(post)">
-        <mat-icon>{{post === editablePost ? 'close' : 'edit'}}</mat-icon>
-      </button>
-    </div>
-    <div matLine *ngIf="post !== editablePost">
-      <p>{{post.text}}</p>
-    </div>
-    <div matLine *ngIf="post === editablePost">
-      <form >
-        <mat-form-field class="post-form-field">
-          <input matInput placeholder="Author" [(ngModel)]="post.author" name="author">
-        </mat-form-field>
+        </p>
+        <button class="post-edit-button" mat-icon-button (click)="editPost(post)">
+          <mat-icon>{{post === editablePost ? 'close' : 'edit'}}</mat-icon>
+        </button>
+      </div>
+      <div matLine *ngIf="post !== editablePost">
+        <p>{{post.text}}</p>
+      </div>
+      <div matLine *ngIf="post === editablePost">
+        <form >
+          <mat-form-field class="post-form-field">
+            <input matInput placeholder="Author" [(ngModel)]="post.author" name="author">
+          </mat-form-field>
 
-        <mat-form-field class="post-form-field">
-          <input matInput placeholder="Location" [(ngModel)]="post.location" name="location">
-        </mat-form-field>
-      </form>
+          <mat-form-field class="post-form-field">
+            <input matInput placeholder="Location" [(ngModel)]="post.location" name="location">
+          </mat-form-field>
+        </form>
+      </div>
+      <mat-divider *ngIf="!last"></mat-divider>
     </div>
-    <mat-divider *ngIf="!last"></mat-divider>
-  </div>
-</mat-expansion-panel>
+  </mat-expansion-panel>
+</mat-accordion>
+
