@@ -11,18 +11,22 @@ export class PostGroupRadioComponent implements OnInit {
 
   @Output() selectGroupKey = new EventEmitter<GroupKey>();
 
-  groupKeys: { title: string, key: GroupKey, checked?: boolean }[] = [
-    {key: 'yearWeek', title: 'Week', checked: true},
+  selectedKey: GroupKey = 'yearWeek';
+
+  groupKeys: { title: string, key: GroupKey}[] = [
+    {key: 'yearWeek', title: 'Week'},
     {key: 'author', title: 'Author'},
     {key: 'location', title: 'Location'},
   ];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
   public onSelectGroupKey(event: MatRadioChange) {
+    this.selectedKey = event.value;
     this.selectGroupKey.emit(event.value);
   }
 
