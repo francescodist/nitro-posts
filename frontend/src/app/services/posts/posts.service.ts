@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {CrudService} from '../crud/crud.service';
 import {Post} from '../../models/post.model';
 import {PostTreeItem} from '../../components/post-tree-list/post-tree-list.component';
+import {Subscription} from 'rxjs';
 
 export type GroupKey = ('yearWeek' | 'author' | 'location') & keyof Post;
 
@@ -17,8 +18,8 @@ export class PostsService {
   constructor(private crudService: CrudService<Post>) {
   }
 
-  public fetchList() {
-    this.crudService.getList(this.url).subscribe(list => {
+  public fetchList(): Subscription {
+    return this.crudService.getList(this.url).subscribe(list => {
       this.postList = list.map(post => new Post(post));
       this.setGroupedList('yearWeek');
     });
