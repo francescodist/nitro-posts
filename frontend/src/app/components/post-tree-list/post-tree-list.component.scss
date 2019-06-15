@@ -1,8 +1,30 @@
+.radio-group-container {
+  margin-bottom: 32px;
+}
+
+.group-title {
+  font-weight: 500;
+  font-size: 18px;
+}
+
 .post-title {
   display: flex;
   width: 100%;
 
+  .post-author {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .post-location {
+    font-style: italic;
+  }
+
   .post-edit-button {
     margin: auto 0 auto auto;
   }
+}
+
+.post-form-field {
+  margin-right: 32px;
 }
