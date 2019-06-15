@@ -1,1 +1,8 @@
-<app-post-tree-list [treeList]="getGroupedPostsList()" (selectGroupKey)="setGroupedPostsList($event)"></app-post-tree-list>
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  Posts
+</mat-toolbar>
+<div class="page-content">
+  <app-post-tree-list [treeList]="getGroupedPostsList()"
+                      (selectGroupKey)="setGroupedPostsList($event)">
+  </app-post-tree-list>
+</div>
