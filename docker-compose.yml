@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  mock-server:
+    image: node:12
+    ports:
+      - "3000:3000"
+    command: bash -c "npm start"
+    working_dir: /mock-server
+    volumes:
+      - ./mock-server:/mock-server
+  frontend:
+    image: nitro/frontend
+    build:
+      context: ./frontend
+    ports:
+      - "4200:4200"
