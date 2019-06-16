@@ -3,6 +3,7 @@
 </mat-toolbar>
 <div class="page-content">
   <app-post-tree-list [treeList]="getGroupedPostsList()"
-                      (selectGroupKey)="setGroupedPostsList($event)">
+                      (selectGroupKey)="setGroupedPostsList($event)"
+                      (postSaved)="refreshGroupedList()">
   </app-post-tree-list>
 </div>

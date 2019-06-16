@@ -1,11 +1,16 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Post} from '../../models/post.model';
-import {GroupKey} from '../../services/posts/posts.service';
+import {GroupKey, PostsService} from '../../services/posts/posts.service';
 
 export interface PostTreeItem {
   groupKey: string;
   groupTitle: string;
   postList: Post[];
+}
+
+class EditPostModel {
+  author = '';
+  location = '';
 }
 
 @Component({
@@ -18,10 +23,12 @@ export class PostTreeListComponent implements OnInit {
   @Input() treeList: PostTreeItem[];
 
   @Output() selectGroupKey = new EventEmitter<GroupKey>();
+  @Output() postSaved = new EventEmitter();
 
   editablePost: Post;
+  editModel: EditPostModel;
 
-  constructor() {
+  constructor(private postService: PostsService) {
   }
 
   ngOnInit() {
@@ -37,6 +44,20 @@ export class PostTreeListComponent implements OnInit {
   }
 
   public editPost(post: Post) {
-    this.editablePost = this.editablePost === post ? null : post;
+    if (post) {
+      this.editModel = new EditPostModel();
+      Object.keys(this.editModel).forEach(key => {
+        this.editModel[key] = post[key];
+      });
+    }
+    this.editablePost = post;
+  }
+
+  public savePost(post: Post) {
+    Object.keys(this.editModel).forEach(key => {
+      post[key] = this.editModel[key];
+    });
+    this.editPost(null);
+    this.postSaved.emit();
   }
 }

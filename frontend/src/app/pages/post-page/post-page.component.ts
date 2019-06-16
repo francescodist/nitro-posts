@@ -24,4 +24,8 @@ export class PostPageComponent implements OnInit {
     this.postService.setGroupedList(groupKey);
   }
 
+  public refreshGroupedList() {
+    this.postService.setGroupedList();
+  }
+
 }

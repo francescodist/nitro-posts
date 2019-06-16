@@ -25,9 +25,15 @@
           {{post.location}}
         </span>
         </p>
-        <button class="post-edit-button" mat-icon-button (click)="editPost(post)">
-          <mat-icon>{{post === editablePost ? 'close' : 'edit'}}</mat-icon>
-        </button>
+        <div class="action-buttons">
+          <button mat-icon-button *ngIf="post === editablePost"
+                  (click)="savePost(post)" color="accent">
+            <mat-icon>save</mat-icon>
+          </button>
+          <button mat-icon-button (click)="post === editablePost ? editPost(null) : editPost(post)">
+            <mat-icon>{{post === editablePost ? 'close' : 'edit'}}</mat-icon>
+          </button>
+        </div>
       </div>
       <div matLine *ngIf="post !== editablePost">
         <p>{{post.text}}</p>
@@ -35,11 +41,11 @@
       <div matLine *ngIf="post === editablePost">
         <form >
           <mat-form-field class="post-form-field">
-            <input matInput placeholder="Author" [(ngModel)]="post.author" name="author">
+            <input matInput placeholder="Author" [(ngModel)]="editModel.author" name="author">
           </mat-form-field>
 
           <mat-form-field class="post-form-field">
-            <input matInput placeholder="Location" [(ngModel)]="post.location" name="location">
+            <input matInput placeholder="Location" [(ngModel)]="editModel.location" name="location">
           </mat-form-field>
         </form>
       </div>

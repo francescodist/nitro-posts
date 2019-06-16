@@ -13,6 +13,7 @@ export class PostsService {
 
   private postList: Post[] = [];
   private groupedPostList: PostTreeItem[];
+  private selectedGroup: GroupKey;
   private url = 'posts';
 
   constructor(private crudService: CrudService<Post>) {
@@ -33,7 +34,8 @@ export class PostsService {
     return this.groupedPostList;
   }
 
-  public setGroupedList(groupKey: GroupKey) {
+  public setGroupedList(groupKey: GroupKey = this.selectedGroup) {
+    this.selectedGroup = groupKey;
     this.groupedPostList = this.postList.reduce((postTreeList, post) => {
       const group: PostTreeItem = postTreeList.find((postTreeItem: PostTreeItem) => {
         return postTreeItem.groupKey === post[groupKey];
