@@ -4,7 +4,7 @@ services:
     image: node:12
     ports:
       - "3000:3000"
-    command: bash -c "npm start"
+    command: bash -c "npm i && npm start"
     working_dir: /mock-server
     volumes:
       - ./mock-server:/mock-server
