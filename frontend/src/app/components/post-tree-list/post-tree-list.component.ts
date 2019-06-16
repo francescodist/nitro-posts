@@ -28,7 +28,7 @@ export class PostTreeListComponent implements OnInit {
   editablePost: Post;
   editModel: EditPostModel;
 
-  constructor(private postService: PostsService) {
+  constructor() {
   }
 
   ngOnInit() {

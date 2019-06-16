@@ -14,6 +14,7 @@ import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {Post} from '../../models/post.model';
+import {DirectivesModule} from '../../directives/directives.module';
 
 describe('PostTreeListComponent', () => {
   let component: PostTreeListComponent;
@@ -31,7 +32,8 @@ describe('PostTreeListComponent', () => {
         MatDividerModule,
         MatCardModule,
         MatRadioModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        DirectivesModule
       ]
     })
       .compileComponents();
@@ -76,6 +78,7 @@ describe('PostTreeListComponent', () => {
     let inputFields = fixture.debugElement.queryAll(By.css('mat-form-field input'));
     expect(inputFields.length).toBe(0);
     component.editablePost = postToEdit;
+    component.editModel = {author: 'author', location: ''};
     fixture.detectChanges();
     tick();
     inputFields = fixture.debugElement.queryAll(By.css('mat-form-field input'));
@@ -85,4 +88,15 @@ describe('PostTreeListComponent', () => {
     });
     expect(authorInputField).toBeTruthy();
   }));
+
+  it('should update post after saving', () => {
+    const postToEdit = {author: 'author', location: 'location'};
+    const editModel = {author: 'newAuthor', location: 'newLocation'};
+    expect(postToEdit.author).toBe('author');
+    expect(postToEdit.location).toBe('location');
+    component.editModel = editModel;
+    component.savePost(postToEdit as Post);
+    expect(postToEdit.author).toBe('newAuthor');
+    expect(postToEdit.location).toBe('newLocation');
+  });
 });
