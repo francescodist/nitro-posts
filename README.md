@@ -36,11 +36,13 @@ Open two terminals in the root of the project
 Terminal 1:
 ```
 cd mock-server
+npm i
 npm start
 ```
 Terminal 2:
 ```
 cd frontend
+npm i
 npm start
 ```
 
